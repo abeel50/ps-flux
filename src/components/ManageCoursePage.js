@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Prompt } from "react-router-dom";
 import { toast } from 'react-toastify';
 
@@ -17,6 +17,15 @@ const ManageCoursePage = props => {
         category: ""
 
     });
+
+    useEffect(() => {
+        const slug = props.match.params.slug; // from the path `/courses/:slug`
+        if (slug) {
+            courseApi.getCourseBySlug(slug).then(_course => {
+                setCourse(_course)
+            });
+        }
+    }, [props.match.params.slug]);
 
     function handleChange(event) {
         const updatedCourse = { ...course, [event.target.name]: event.target.value };
@@ -42,9 +51,6 @@ const ManageCoursePage = props => {
             toast.success('course saved');
         });
     }
-
-
-
 
     return (
         <>
