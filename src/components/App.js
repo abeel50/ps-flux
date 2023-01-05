@@ -7,11 +7,15 @@ import Header from "./common/Header";
 import CoursesPage from "./CoursePage";
 import ManageCoursePage from "./ManageCoursePage";
 import NotFoundPage from "./NotFoundPage";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
 
     return (
         <div className="container-fluid">
+            <ToastContainer autoClose={3000} hideProgressBar theme="dark" />
             <Header />
             <Switch>
                 <Route path="/" exact component={HomePage} />
